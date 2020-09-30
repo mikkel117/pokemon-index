@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.scss';
+import Test from './combontes/pages/pokemon'
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <section className="App">
+      <Test />
+    </section>
   );
 }
 
