@@ -24,10 +24,20 @@ function Fetch() {
           //   setLoad(true);
         });
     }
-    console.log(apiData);
-    
+    console.log(apiData && apiData.results);
   });
+
+  const apiDataMap =
+  apiData &&
+  apiData.results.map((result) => {
+    return <p key={result.url}>
+      {result.name}
+    </p>;
+  });
+
+  return <div>{apiDataMap}</div>;
 }
+
 
 export default function Pokemon() {
   return (
