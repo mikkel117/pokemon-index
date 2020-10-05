@@ -1,48 +1,20 @@
-import React, { useEffect, useState } from 'react';
-
-function Fetch() {
-  const [apiData, setApiData] = useState(null);
-
-  useEffect(() => {
-    if (!apiData) {
-      const fetchHeaders = new Headers();
-      fetchHeaders.append('Accept', 'application/json');
-
-      fetch('https://pokeapi.co/api/v2/pokemon', {
-        method: 'GET',
-        headers: fetchHeaders,
-        redirect: 'follow',
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setApiData(data);
-          //   setLoad(true);
-        })
-        .catch((err) => {
-          console.log(err);
-          //   setError(err.message);
-          //   setLoad(true);
-        });
-    }
-    console.log(apiData && apiData.results);
-  });
-
-  const apiDataMap =
-  apiData &&
-  apiData.results.map((result) => {
-    return <p key={result.url}>
-      {result.name}
-    </p>;
-  });
-
-  return <div>{apiDataMap}</div>;
-}
+import React, { useContext} from 'react';
+import {HomeFetch} from '../../context/homeFetch'
 
 
 export default function Pokemon() {
+    const {homeData} = useContext(HomeFetch)
   return (
     <section>
-      <Fetch />
+  <div>
+      {homeData && homeData.results.map((results) =>{
+          return(
+              <p key={results.url}>
+                  {results.name}
+              </p>
+          )
+      })}
+  </div>
     </section>
   );
 }

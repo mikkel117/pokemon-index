@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.scss';
-import Test from './combontes/pages/pokemon'
+import Placeholder from './combontes/pages/pokemon';
+import HomeFetchProvider from './context/homeFetch';
 
 function App() {
   return (
     <section className="App">
-      <Test />
+      <HomeFetchProvider>
+        <Placeholder />
+      </HomeFetchProvider>
     </section>
   );
 }
