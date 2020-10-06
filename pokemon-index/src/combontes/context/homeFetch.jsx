@@ -2,10 +2,7 @@ import React, {createContext, useState, useEffect} from 'react'
 
 export const HomeFetch = createContext()
 
-  
-
-
- const HomeFetchProvider = (props) => {
+const HomeFetchProvider = (props) => {
     const [homeData, setHomeData] = useState(null);
 
     useEffect(() => {
@@ -29,7 +26,6 @@ export const HomeFetch = createContext()
               //   setLoad(true);
             });
         }
-        console.log(homeData && homeData.results);
       });
 
     return(
