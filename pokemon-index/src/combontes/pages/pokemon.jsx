@@ -5,35 +5,45 @@ import {PokemonFetch} from '../context/pokemonFetch';
 
 export default function Pokemon() {
     const {homeData} = useContext(HomeFetch)
-    const {pokemonData, setPokemonChoice, callApi} = useContext(PokemonFetch)
-    // const {setCallApi} = useContext(PokemonFetch)
+    const {pokemonData, setPokemonChoice, callApi, setCallApi} = useContext(PokemonFetch)
 
 
-    const Test = (results) => {
+    const PokemonAdd = (results) => {
         console.log(results);
         setPokemonChoice(results.name)
+        setCallApi(true)
     }
 
   return (
     <section>
+        <button onClick={() => {
+            setCallApi(true)
+        }}>click me</button>
   <div>
       {homeData && homeData.results.map((results) =>{
           return(
               <p key={results.url}>
                   {results.name}
                   <button onClick={() => {
-                      Test(results);
-                    // setCallApi(true)
-                    console.log(callApi);
-                  }}>click me</button>
+                      PokemonAdd(results);
+                  }}>se mere</button>
               </p>
           )
       })}
   </div>
-  {}
+  { callApi ? (
   <div className="pokemon-data-overlaye">
-
+      <h1>hej</h1>
+      <button onClick={() => {
+          setCallApi(false)
+      }}>X</button>
   </div>
+  ) : (
+      <>
+
+      </>
+  ) }
+
     </section>
   );
 }

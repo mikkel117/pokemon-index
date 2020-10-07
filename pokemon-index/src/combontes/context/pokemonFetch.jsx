@@ -7,33 +7,33 @@ const PokemonFetchProvider = (props) => {
     const [pokemonChoice, setPokemonChoice] = useState('');
     const [callApi, setCallApi] = useState(false);
 
-    useEffect(() => {
-        if (callApi === true){
-        if (!pokemonData) {
-          const fetchHeaders = new Headers();
-          fetchHeaders.append('Accept', 'application/json');
+    // useEffect(() => {
+    //     if (callApi === true){
+    //     if (!pokemonData) {
+    //       const fetchHeaders = new Headers();
+    //       fetchHeaders.append('Accept', 'application/json');
     
-          fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonChoice}`, {
-            method: 'GET',
-            headers: fetchHeaders,
-            redirect: 'follow',
-          })
-            .then((res) => res.json())
-            .then((data) => {
-                setPokemonData(data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-        console.log('pokemon data', pokemonData);
-    }
-      });
+    //       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonChoice}`, {
+    //         method: 'GET',
+    //         headers: fetchHeaders,
+    //         redirect: 'follow',
+    //       })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setPokemonData(data);
+    //         })
+    //         .catch((err) => {
+    //           console.log(err);
+    //         });
+    //     }
+    //     console.log('pokemon data', pokemonData);
+    // }
+    //   });
 
 
 
     return(
-        <PokemonFetch.Provider value={ pokemonData, setPokemonChoice, setCallApi, callApi}>
+        <PokemonFetch.Provider value={{ pokemonData, setCallApi, callApi, setPokemonChoice }}>
             {props.children}
         </PokemonFetch.Provider>
     )
