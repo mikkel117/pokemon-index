@@ -14,7 +14,7 @@ export default function Covid19() {
         fetchHeaders.append('x-rapidapi-host', 'covid-19-coronavirus-statistics.p.rapidapi.com');
         fetchHeaders.append('x-rapidapi-key', 'aee2130728mshc250038c75dd0d2p181ea1jsn58e75ec5d280');
 
-        fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country}`, {
+        fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats?country=${country}`, {
           method: 'GET',
           headers: fetchHeaders,
           redirect: 'follow',
@@ -27,15 +27,15 @@ export default function Covid19() {
             console.log(err);
           });
       }
-      console.log('Covid-19', apiData);
+      console.log('Covid-19', apiData && apiData.data.covid19Stats);
     }
   });
 
   const onSubmit = (data) => {
+    
     console.log(data);
     setCountry(data.pokemon)
-    // setSearch(true)
-    setTimeout(setSearch(true), 2000)
+    setSearch(true)
   };
 
   return (
@@ -53,8 +53,26 @@ export default function Covid19() {
         <input type="submit" value="Login" className="login-submit" />
         <br/>
          {errors.pokemon && <mark> {errors.pokemon.message} </mark>}
+         </form>
+         {search ? (
+        <div>
+{apiData &&
+          apiData.data.covid19Stats.slice(0,10).map((results) => {
+            return (
+              <div key={results.keyId}>
+                <h2>{results.country}</h2>
+                <p>{results.province}</p>
+                <p>{results.confirmed}</p>
+                <p>{results.deaths}</p>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
         
-      </form>
+      
     </section>
   );
 }

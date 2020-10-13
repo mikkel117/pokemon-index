@@ -1,18 +1,22 @@
 import React from 'react';
 import './App.scss';
+import Nav from './combontes/nav-header/nav'
 import HomeFetchProvider from './combontes/context/homeFetch';
 import PokemonFetchProvider from './combontes/context/pokemonFetch'
-import Nav from './combontes/nav-header/nav'
+import VareArrayProvider from './combontes/context/vare'
+
 
 function App() {
   return (
-    <section className="App">
+    <>
       <HomeFetchProvider>
         <PokemonFetchProvider>
+        <VareArrayProvider>
         <Nav />
+        </VareArrayProvider>
         </PokemonFetchProvider>
       </HomeFetchProvider>
-    </section>
+    </>
   );
 }
 
